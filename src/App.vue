@@ -3,7 +3,7 @@ import TheNavbar from './components/Navbar/TheNavbar.vue';
 </script>
 
 <template>
-  <div>
+  <div class="bg-slate-500 w-screen min-h-screen">
     <the-navbar />
 
     <div class="mt-auto">

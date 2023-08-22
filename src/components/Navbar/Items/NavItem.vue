@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center hover:cursor-pointer">
+    <div class="flex items-center hover:cursor-pointer h-12">
         <h1 class="text-container text-white text-base font-light">
             NavItem
         </h1>
