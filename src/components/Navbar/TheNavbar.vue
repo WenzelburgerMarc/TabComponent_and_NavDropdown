@@ -1,5 +1,6 @@
 <template>
-    <div class="navbar fixed top-0 left-o w-screen h-20 bg-slate-700 flex justify-between items-center">
+    <div class="navbar fixed top-0 left-0 w-screen h-20 bg-slate-700 flex justify-between items-center fade-down-enter-start"
+        :class="isLoaded ? 'fade-down-enter-end' : ''">
         <nav-brand-item class="mr-auto relative" />
 
         <mobile-toggle-btn v-if="isMobile" @click="toggleMobile" class="fixed right-3" />
@@ -70,5 +71,26 @@ const arrDropDownItems = [
     }
 ];
 
+
+let isLoaded = ref(false);
+onMounted(() => {
+    setTimeout(() => {
+        isLoaded.value = true;
+    }, 1000);
+
+
+});
+
 </script>
-<style scoped></style>
+<style scoped>
+.fade-down-enter-start {
+    opacity: 0 !important;
+    transform: translateY(-100%) !important;
+}
+
+.fade-down-enter-end {
+    transition: all 0.25s ease-in-out;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+</style>
