@@ -42,6 +42,7 @@ function checkIsMobile() {
 }
 
 
+
 window.onresize = function () {
     var doLater;
     setAllTransitions(false);
