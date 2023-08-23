@@ -38,4 +38,10 @@ onMounted(() => {
 });
 
 </script>
-<style scoped></style>
+<style scoped>
+.selection-item,
+i,
+span {
+    transition: all 0.3s ease-in-out;
+}
+</style>

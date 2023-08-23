@@ -1,5 +1,5 @@
 <template>
-    <div @mouseenter="isActive = true" @mouseleave="isActive = false"
+    <div @click="isActive = !isActive" @mouseenter="isActive = true" @mouseleave="isActive = false"
         class="relative flex flex-col items-center hover:cursor-pointer h-12 dropdown">
 
         <div @click="props.actionEvent" class="header flex flex-col items-center  h-12  ">

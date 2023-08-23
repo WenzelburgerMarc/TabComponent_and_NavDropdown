@@ -9,8 +9,8 @@ import TheTabCard from './components/TabCard/TheTabCard.vue';
   <div class="bg-slate-500">
     <the-navbar />
 
-    <div class="container flex justify-center items-center px-4 h-full w-screen min-h-screen">
-      <the-tab-card />
+    <div class="container flex justify-center items-center mx-auto h-full w-full max-w-[400px] min-h-screen">
+      <the-tab-card class="w-full shadow-lg" />
     </div>
   </div>
 </template>

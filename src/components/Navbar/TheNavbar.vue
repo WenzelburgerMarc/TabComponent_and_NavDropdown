@@ -78,8 +78,8 @@ function toggleMobile() {
 
 const arrDropDownItems = [
     {
-        text: "Settings",
-        iconClass: "bx-cog",
+        text: "Premium",
+        iconClass: "bx-star",
         actionEvent: () => { }
     },
     {
@@ -122,6 +122,7 @@ onBeforeUnmount(() => {
 }
 
 .navbar {
+    z-index: 10000 !important;
     opacity: 0;
     transform: translateY(-100%);
     transition: all 0.25s ease-in-out;
