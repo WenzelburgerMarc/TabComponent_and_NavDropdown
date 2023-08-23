@@ -114,15 +114,4 @@ onBeforeUnmount(() => {
     opacity: 1;
     transform: translateY(0);
 }
-
-.translate-down-enter-start {
-    opacity: 0 !important;
-    transform: translateY(-100%) !important;
-}
-
-.translate-down-enter-end {
-    transition: all 0.25s ease-in-out;
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
 </style>
