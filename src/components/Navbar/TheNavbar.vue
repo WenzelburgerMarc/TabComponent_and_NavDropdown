@@ -6,7 +6,7 @@
         <mobile-toggle-btn v-if="isMobile" @click="toggleMobile" class="fixed right-3" />
 
 
-        <div :class="[isMobileActive ? 'active' : '', isMobile ? 'translate-y-[calc(-20px+5rem)]' : 'desktopNav']"
+        <div :class="[isMobileActive ? 'active' : 'pointer-events-none', isMobile ? 'translate-y-[calc(-20px+5rem)]' : 'desktopNav']"
             class="item-container flex flex-col items-center sm:flex-row bg-slate-700 p-1 rounded-b-md mt-auto sm:mt-0 opacity-0 ">
 
             <nav-item :is-active="true" text="Home" class="sm:mr-5 mb-1 sm:mb-0" />
