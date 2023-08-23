@@ -21,7 +21,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
 import NavBrandItem from './Items/NavBrandItem.vue';
 import NavItem from './Items/NavItem.vue';
 import NavDropdownItem from './Items/NavDropdownItem.vue';
@@ -80,6 +81,12 @@ onMounted(() => {
 
 
 });
+
+onBeforeUnmount(() => {
+    window.removeEventListener("resize", checkIsMobile);
+
+});
+
 
 </script>
 <style scoped>
