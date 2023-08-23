@@ -1,6 +1,6 @@
 <template>
     <div class="TheTabCard bg-white p-5 rounded-xl shadow-sm">
-        <selection-header v-on:tabChanged="filterArray" />
+        <selection-header v-on:tabChanged="filterArray" :items="arrSelectionHeaderItems" />
         <transition name="fade" mode="out-in">
             <tab-card-list-view :items="arr" :key="activeTypeForAnimation" class="mt-5" />
         </transition>
@@ -8,45 +8,35 @@
     </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, onBeforeMount, ref, PropType } from 'vue';
 import SelectionHeader from './SelectionHeader.vue';
 import TabCardListView from './TabCardListView.vue';
-import { UserItem, FileItem } from './Types/types.ts';
+import { HeaderSelectionItem, UserItem, NormalItem } from './Types/types.ts';
 
-const arrUserItems = [
-    {
-        name: 'Marc Cramer',
-        joinedAt: 'Joined 1 minute ago.',
-        avatarURL: 'src/assets/avatar.png',
-        isOnline: true,
-        type: 'user'
 
+const props = defineProps({
+    arrItems: {
+        type: Array as any,
+        required: true,
     },
-    {
-        name: 'John Doe',
-        joinedAt: 'Joined 30 minutes ago.',
-        isOnline: false,
-        avatarURL: '',
-        type: 'user'
-    }
-] as UserItem[];
-
-const arrFileItems = [
-    {
-        fileName: 'file1.txt',
-        iconClass: 'bxs-file-txt',
-        infoText: 'Created 1 hour ago.',
-        type: 'file'
+    arrSelectionHeaderItems: {
+        type: Array as PropType<(HeaderSelectionItem)[]>,
+        required: true,
     },
-    {
-        fileName: 'file2.pdf',
-        iconClass: 'bxs-file-pdf',
-        infoText: 'Created 2 hours ago.',
-        type: 'file'
-    }
-] as FileItem[];
+});
 
-const arr = ref([...arrUserItems, ...arrFileItems]);
+
+let arr = [] as any;
+let backupArr = [] as any;
+
+
+onBeforeMount(() => {
+    arr = ref([...props.arrItems]);
+    backupArr = arr.value;
+
+});
+
+
 
 
 onMounted(() => {
@@ -59,18 +49,25 @@ onMounted(() => {
 let activeTypeForAnimation = ref('all');
 
 function filterArray(activeType: string) {
+    arr = backupArr;
 
-    // TODO: could be improved via general type check
-    if (activeType === 'all') {
-        arr.value = [...arrUserItems, ...arrFileItems];
-        activeTypeForAnimation.value = 'all';
-    } else if (activeType === 'user') {
-        arr.value = [...arrUserItems];
-        activeTypeForAnimation.value = 'user';
-    } else if (activeType === 'file') {
-        arr.value = [...arrFileItems];
-        activeTypeForAnimation.value = 'file';
+    console.log(activeType)
+
+    const allTypes = props.arrSelectionHeaderItems.map((item) => item.type);
+
+    console.log(allTypes)
+
+    if (!allTypes.includes(activeType)) {
+        throw new Error('Invalid type');
     }
+
+    if (activeType === activeTypeForAnimation.value) return;
+
+
+    if (activeType != 'all')
+        arr = arr.filter((item: (NormalItem | UserItem)) => item.type === activeType);
+
+    activeTypeForAnimation.value = activeType;
 }
 </script>
 <style scoped>
