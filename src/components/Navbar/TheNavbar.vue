@@ -41,7 +41,30 @@ function checkIsMobile() {
 
 }
 
-window.addEventListener("resize", checkIsMobile);
+
+window.onresize = function () {
+    var doLater;
+    setAllTransitions(false);
+    clearTimeout(doLater);
+    doLater = setTimeout(() => setAllTransitions(true), 100);
+
+    checkIsMobile();
+};
+
+function setAllTransitions(val: boolean) {
+    const elements = document.querySelectorAll('*') as NodeListOf<HTMLElement>;
+    if (val) {
+
+        for (const element of elements) {
+            element.style.transition = '';
+        }
+    } else {
+
+        for (const element of elements) {
+            element.style.transition = 'none';
+        }
+    }
+}
 
 
 onMounted(() => {
