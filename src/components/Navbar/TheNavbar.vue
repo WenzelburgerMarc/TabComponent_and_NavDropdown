@@ -9,10 +9,10 @@
                 :class="[isMobileActive ? '' : 'hidden', isMobile ? 'translate-y-20' : 'translate-y-0']"
                 class="item-container flex flex-col items-center sm:flex-row bg-slate-700 p-1 rounded-b-md mt-auto sm:mt-0">
 
-                <nav-item class="mr-5" />
-                <nav-item class="mr-5" />
-                <nav-item class="mr-5" />
-                <nav-dropdown-item />
+                <nav-item :is-active="true" text="Home" class="sm:mr-5 mb-1 sm:mb-0" />
+                <nav-item text="About Me" class="sm:mr-5 mb-1 sm:mb-0" />
+                <nav-item text="Contact" class="sm:mr-5 mb-1 sm:mb-0" />
+                <nav-dropdown-item text="Settings" :drop-down-items="arrDropDownItems" />
 
             </div>
         </transition>
@@ -26,7 +26,7 @@ import NavItem from './Items/NavItem.vue';
 import NavDropdownItem from './Items/NavDropdownItem.vue';
 import MobileToggleBtn from './Items/MobileToggleBtn.vue';
 
-let isMobileActive = ref(true);
+let isMobileActive = ref(false);
 let isMobile = ref(false);
 
 function checkIsMobile() {
@@ -51,6 +51,24 @@ onMounted(() => {
 function toggleMobile() {
     isMobileActive.value = !isMobileActive.value;
 }
+
+const arrDropDownItems = [
+    {
+        text: "Settings",
+        iconClass: "bx-cog",
+        actionEvent: () => { }
+    },
+    {
+        text: "Profile",
+        iconClass: "bx-user",
+        actionEvent: () => { }
+    },
+    {
+        text: "Logout",
+        iconClass: "bx-log-out",
+        actionEvent: () => { }
+    }
+];
 
 </script>
 <style scoped></style>
