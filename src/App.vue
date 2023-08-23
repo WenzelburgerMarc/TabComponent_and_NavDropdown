@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import TheNavbar from './components/Navbar/TheNavbar.vue';
-
+import TheTabCard from './components/TabCard/TheTabCard.vue';
 
 
 </script>
 
 <template>
-  <div class="bg-slate-500 w-screen min-h-screen ">
+  <div class="bg-slate-500">
     <the-navbar />
+
+    <div class="container flex justify-center items-center px-4 h-full w-screen min-h-screen">
+      <the-tab-card />
+    </div>
   </div>
 </template>
 
