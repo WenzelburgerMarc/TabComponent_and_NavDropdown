@@ -60,6 +60,7 @@ let activeTypeForAnimation = ref('all');
 
 function filterArray(activeType: string) {
 
+    // TODO: could be improved via general type check
     if (activeType === 'all') {
         arr.value = [...arrUserItems, ...arrFileItems];
         activeTypeForAnimation.value = 'all';
