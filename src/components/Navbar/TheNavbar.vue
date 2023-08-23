@@ -1,22 +1,21 @@
 <template>
-    <div class="navbar fixed top-0 left-0 w-screen h-20 bg-slate-700 flex justify-between items-center fade-down-enter-start"
-        :class="isLoaded ? 'fade-down-enter-end' : ''">
+    <div class="navbar fixed top-0 left-0 w-screen h-20 bg-slate-700 flex justify-between items-center "
+        :class="isLoaded ? 'fade-down' : ''">
         <nav-brand-item class="mr-auto relative" />
 
         <mobile-toggle-btn v-if="isMobile" @click="toggleMobile" class="fixed right-3" />
 
-        <transition name="translate-down" mode="out-in">
-            <div :key="isMobileActive.toString()"
-                :class="[isMobileActive ? '' : 'hidden', isMobile ? 'translate-y-20' : 'translate-y-0']"
-                class="item-container flex flex-col items-center sm:flex-row bg-slate-700 p-1 rounded-b-md mt-auto sm:mt-0">
 
-                <nav-item :is-active="true" text="Home" class="sm:mr-5 mb-1 sm:mb-0" />
-                <nav-item text="About Me" class="sm:mr-5 mb-1 sm:mb-0" />
-                <nav-item text="Contact" class="sm:mr-5 mb-1 sm:mb-0" />
-                <nav-dropdown-item text="Settings" :drop-down-items="arrDropDownItems" />
+        <div :class="[isMobileActive ? 'active' : '', isMobile ? 'translate-y-[calc(-20px+5rem)]' : 'desktopNav']"
+            class="item-container flex flex-col items-center sm:flex-row bg-slate-700 p-1 rounded-b-md mt-auto sm:mt-0 opacity-0 ">
 
-            </div>
-        </transition>
+            <nav-item :is-active="true" text="Home" class="sm:mr-5 mb-1 sm:mb-0" />
+            <nav-item text="About Me" class="sm:mr-5 mb-1 sm:mb-0" />
+            <nav-item text="Contact" class="sm:mr-5 mb-1 sm:mb-0" />
+            <nav-dropdown-item text="Settings" :drop-down-items="arrDropDownItems" />
+
+        </div>
+
 
     </div>
 </template>
@@ -90,12 +89,38 @@ onBeforeUnmount(() => {
 
 </script>
 <style scoped>
-.fade-down-enter-start {
+.item-container {
+    transition: all 0.25s ease-in-out;
+}
+
+.active {
+    opacity: 1;
+    transform: translateY(5rem);
+}
+
+.navbar {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.25s ease-in-out;
+}
+
+.desktopNav {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-down {
+
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.translate-down-enter-start {
     opacity: 0 !important;
     transform: translateY(-100%) !important;
 }
 
-.fade-down-enter-end {
+.translate-down-enter-end {
     transition: all 0.25s ease-in-out;
     opacity: 1 !important;
     transform: translateY(0) !important;
